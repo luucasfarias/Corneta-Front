@@ -461,6 +461,69 @@
       "betMade": false,
       "discountFromWallet": false,
       "id": 66
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 67
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 68
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 69
+    },
+    {
+      "guessHomeTeam": "2",
+      "guessVisitingTeam": "1",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 70
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 71
+    },
+    {
+      "guessHomeTeam": "2",
+      "guessVisitingTeam": "1",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 72
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 73
+    },
+    {
+      "guessHomeTeam": "2",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 74
+    },
+    {
+      "guessHomeTeam": "2",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 75
     }
   ],
   "user": [
@@ -627,7 +690,8 @@
         "flag": "ec"
       },
       "gameDate": "2022-11-20T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 2,
@@ -646,7 +710,8 @@
         "flag": "nl"
       },
       "gameDate": "2022-11-21T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 3,
@@ -665,7 +730,8 @@
         "flag": "ir"
       },
       "gameDate": "2022-11-21T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 4,
@@ -684,7 +750,8 @@
         "flag": "gb wls"
       },
       "gameDate": "2022-11-21T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 5,
@@ -703,7 +770,8 @@
         "flag": "sa"
       },
       "gameDate": "2022-11-22T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 6,
@@ -722,7 +790,8 @@
         "flag": "tn"
       },
       "gameDate": "2022-11-22T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 7,
@@ -741,7 +810,8 @@
         "flag": "pl"
       },
       "gameDate": "2022-11-22T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 8,
@@ -760,7 +830,8 @@
         "flag": "au"
       },
       "gameDate": "2022-11-22T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 9,
@@ -779,7 +850,8 @@
         "flag": "hr"
       },
       "gameDate": "2022-11-23T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 10,
@@ -798,7 +870,8 @@
         "flag": "jp"
       },
       "gameDate": "2022-11-23T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 11,
@@ -817,7 +890,8 @@
         "flag": "cr"
       },
       "gameDate": "2022-11-23T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 12,
@@ -836,7 +910,8 @@
         "flag": "ca"
       },
       "gameDate": "2022-11-23T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 13,
@@ -855,7 +930,8 @@
         "flag": "cm"
       },
       "gameDate": "2022-11-24T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 14,
@@ -874,7 +950,8 @@
         "flag": "kr"
       },
       "gameDate": "2022-11-24T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 15,
@@ -893,7 +970,8 @@
         "flag": "gh"
       },
       "gameDate": "2022-11-24T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 16,
@@ -912,7 +990,8 @@
         "flag": "rs"
       },
       "gameDate": "2022-11-24T00:00:00",
-      "round": "Grupos 1"
+      "round": "Grupos 1",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 17,
@@ -931,7 +1010,8 @@
         "flag": "ir"
       },
       "gameDate": "2022-11-25T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 18,
@@ -950,7 +1030,8 @@
         "flag": "sn"
       },
       "gameDate": "2022-11-25T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 19,
@@ -969,7 +1050,8 @@
         "flag": "ec"
       },
       "gameDate": "2022-11-25T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 20,
@@ -988,7 +1070,8 @@
         "flag": "us"
       },
       "gameDate": "2022-11-25T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 21,
@@ -1007,7 +1090,8 @@
         "flag": "au"
       },
       "gameDate": "2022-11-26T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 22,
@@ -1026,7 +1110,8 @@
         "flag": "sa"
       },
       "gameDate": "2022-11-26T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 23,
@@ -1045,7 +1130,8 @@
         "flag": "dk"
       },
       "gameDate": "2022-11-26T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 24,
@@ -1064,7 +1150,8 @@
         "flag": "mx"
       },
       "gameDate": "2022-11-26T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 25,
@@ -1083,7 +1170,8 @@
         "flag": "cr"
       },
       "gameDate": "2022-11-27T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 26,
@@ -1102,7 +1190,8 @@
         "flag": "ma"
       },
       "gameDate": "2022-11-27T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 27,
@@ -1121,7 +1210,8 @@
         "flag": "ca"
       },
       "gameDate": "2022-11-27T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 28,
@@ -1140,7 +1230,8 @@
         "flag": "de"
       },
       "gameDate": "2022-11-27T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 29,
@@ -1159,7 +1250,8 @@
         "flag": "rs"
       },
       "gameDate": "2022-11-28T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 30,
@@ -1178,7 +1270,8 @@
         "flag": "gh"
       },
       "gameDate": "2022-11-28T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 31,
@@ -1197,7 +1290,8 @@
         "flag": "ch"
       },
       "gameDate": "2022-11-28T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 32,
@@ -1216,7 +1310,8 @@
         "flag": "uy"
       },
       "gameDate": "2022-11-28T00:00:00",
-      "round": "Grupos 2"
+      "round": "Grupos 2",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 33,
@@ -1235,7 +1330,8 @@
         "flag": "sn"
       },
       "gameDate": "2022-11-29T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 34,
@@ -1254,7 +1350,8 @@
         "flag": "qa"
       },
       "gameDate": "2022-11-29T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 35,
@@ -1273,7 +1370,8 @@
         "flag": "gb eng"
       },
       "gameDate": "2022-11-29T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 36,
@@ -1292,7 +1390,8 @@
         "flag": "us"
       },
       "gameDate": "2022-11-29T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 37,
@@ -1311,7 +1410,8 @@
         "flag": "dk"
       },
       "gameDate": "2022-11-30T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 38,
@@ -1330,7 +1430,8 @@
         "flag": "fr"
       },
       "gameDate": "2022-11-30T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 39,
@@ -1349,7 +1450,8 @@
         "flag": "ar"
       },
       "gameDate": "2022-11-30T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 40,
@@ -1368,7 +1470,8 @@
         "flag": "mx"
       },
       "gameDate": "2022-11-30T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 41,
@@ -1387,7 +1490,8 @@
         "flag": "be"
       },
       "gameDate": "2022-12-01T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 42,
@@ -1406,7 +1510,8 @@
         "flag": "ma"
       },
       "gameDate": "2022-12-01T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 43,
@@ -1425,7 +1530,8 @@
         "flag": "es"
       },
       "gameDate": "2022-12-01T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 44,
@@ -1444,7 +1550,8 @@
         "flag": "de"
       },
       "gameDate": "2022-12-01T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 45,
@@ -1463,7 +1570,8 @@
         "flag": "uy"
       },
       "gameDate": "2022-12-02T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 46,
@@ -1482,7 +1590,8 @@
         "flag": "pt"
       },
       "gameDate": "2022-12-02T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 47,
@@ -1501,7 +1610,8 @@
         "flag": "ch"
       },
       "gameDate": "2022-12-02T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     },
     {
       "id": 48,
@@ -1520,7 +1630,8 @@
         "flag": "br"
       },
       "gameDate": "2022-12-02T00:00:00",
-      "round": "Grupos 3"
+      "round": "Grupos 3",
+      "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match96"
     }
   ],
   "doBet": []

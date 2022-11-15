@@ -104,3 +104,13 @@ input[type=number] {
  appearance: textfield;
 
 }
+
+.with-money {
+  display: flex;
+  justify-content: center;
+}
+
+.finish {
+  margin-top: 10px;
+  width: 100%;
+}

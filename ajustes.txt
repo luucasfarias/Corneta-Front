@@ -1,0 +1,4 @@
+Finalize sera um botao so para os admin, so vou saber disso quando listar o endpoint de usuario e pegar a chave role
+
+pra finalizar
+makeContractSTXPostCondition

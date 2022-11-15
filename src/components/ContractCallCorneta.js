@@ -3,8 +3,12 @@ import { StacksTestnet } from "@stacks/network";
 import {
   AnchorMode,
   falseCV,
+  FungibleConditionCode,
   intCV,
+  makeContractSTXPostCondition,
+  makeStandardSTXPostCondition,
   PostConditionMode,
+  trueCV,
   tupleCV,
 } from "@stacks/transactions";
 import { userSession } from "./ConnectWallet";
@@ -30,6 +34,7 @@ const ContractCallCorneta = () => {
   const [guessHomeTeam, setGuessHomeTeam] = useState('');
   const [guessVisitingTeam, setGuessVisitingTeam] = useState('');
   const [roundSelected, setRoundSelected] = useState(defaultRound);
+  const [withMoney, setWithMoney] = useState(true);
 
   const [newUser, setNewUser] = useState(null);
   const [state, setState] = useState({
@@ -72,7 +77,6 @@ const ContractCallCorneta = () => {
     axios.get(`${url}/matches`, { headers: headers }).then((response) => {
       const group = response.data.filter((match) => match.round === round);
       console.log(group);
-
       setMatch(group);
     });
   }
@@ -166,6 +170,18 @@ const ContractCallCorneta = () => {
   }
   )
 
+  const notifyFinalizeBet = () => toast.success(
+    'Palpite finalizado com sucesso', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  })
+
   const sanitizeDate = (date) => {
     const options = {
       dateStyle: ('full' || 'long' || 'medium' || 'short')
@@ -206,18 +222,65 @@ const ContractCallCorneta = () => {
   });
 
 
+  // function saveMatchBet(item) {
+  //   // console.log(item);
+  //   doContractCall({
+  //     network: new StacksTestnet(),
+  //     anchorMode: AnchorMode.Any,
+  //     contractAddress: "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC",
+  //     contractName: "bet-test-nara",
+  //     functionName: "save-bet",
+  //     functionArgs: [tupCV],
+  //     postConditionMode: PostConditionMode.Allow,
+  //     postConditions: [],
+  //     onFinish: (data) => {
+  //       console.log("onFinish:", data);
+  //       saveDoBetForUser(item);
+  //       notify();
+  //       // Primeiro salva do lado da blockchain
+  //       // No response da transacao com a blockchain pegar o txId e salvar no userBet da API Corneta
+  //       // Depois de finalizado salva na api corneta
 
+  //       // window
+  //       //   .open(
+  //       //     `https://explorer.stacks.co/txid/${data.txId}?chain=testnet`,
+  //       //     "_blank"
+  //       //   )
+  //       //   .focus();
+  //     },
+  //     onCancel: () => {
+  //       notifyError();
+  //       console.log("onCancel:", "Transaction was canceled");
+  //     },
+  //   });
+  // }
+
+  const postConditionCode = FungibleConditionCode.Equal;
+  const postConditionAmount = withMoney === true ? 5000000n : 0n;
+
+  const contractSTXPostCondition = makeStandardSTXPostCondition(
+    userSession.loadUserData().profile.stxAddress.testnet,
+    postConditionCode,
+    postConditionAmount
+  );
+
+  //  "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC", "bet-test-nara"
   function saveMatchBet(item) {
-    // console.log(item);
+    console.log(item);
+    const splitHashCode = item.contractHashCode.split('.');
     doContractCall({
       network: new StacksTestnet(),
       anchorMode: AnchorMode.Any,
-      contractAddress: "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC",
-      contractName: "bet-test-nara",
+      contractAddress: `${splitHashCode[0]}`,
+      contractName: `${splitHashCode[1]}`,
       functionName: "save-bet",
-      functionArgs: [tupCV],
-      postConditionMode: PostConditionMode.Allow,
-      postConditions: [],
+      functionArgs: [tupleCV({
+        s1: intCV(item.homeTeam.scoreboard),
+        s2: intCV(item.visitingTeam.scoreboard),
+        free: falseCV()
+      })],
+      postConditionMode: PostConditionMode.Deny,
+      postConditions: [contractSTXPostCondition],
       onFinish: (data) => {
         console.log("onFinish:", data);
         saveDoBetForUser(item);
@@ -232,6 +295,35 @@ const ContractCallCorneta = () => {
         //     "_blank"
         //   )
         //   .focus();
+      },
+      onCancel: () => {
+        notifyError();
+        console.log("onCancel:", "Transaction was canceled");
+      },
+    });
+  }
+
+  function finalizaMatchBet(item) {
+    console.log(item);
+    const splitHashCode = item.contractHashCode.split('.');
+    doContractCall({
+      network: new StacksTestnet(),
+      anchorMode: AnchorMode.Any,
+      contractAddress: `${splitHashCode[0]}`,
+      contractName: `${splitHashCode[1]}`,
+      functionName: "finalize-bet",
+      functionArgs: [intCV(item.homeTeam.scoreboard), intCV(item.visitingTeam.scoreboard)], // valores que serao o placar final do jogo
+      postConditionMode: PostConditionMode.Deny,
+      postConditions: [makeContractSTXPostCondition(
+        splitHashCode[0],
+        splitHashCode[1],
+        FungibleConditionCode.Greater,
+        0n
+      )],
+      onFinish: (data) => {
+        console.log("onFinish:", data);
+        notifyFinalizeBet();
+        window.location.reload();
       },
       onCancel: () => {
         notifyError();
@@ -310,8 +402,15 @@ const ContractCallCorneta = () => {
     // })
   };
 
+  const switchMoney = (e) => {
+    console.log(e.target.checked);
+    setWithMoney(e.target.checked);
+  }
 
-
+  const test = (item) => {
+    console.log('meu birro: ', item);
+    finalizaMatchBet(item);
+  }
 
   return (
     <>
@@ -407,11 +506,26 @@ const ContractCallCorneta = () => {
                                           {sanitizeDate(item.gameDate)}
                                         </Badge>
                                       </Col>
+
+                                      <Col>
+                                        <Form.Check
+                                          className="with-money"
+                                          type="switch"
+                                          id={`custom-switch-${item.id}`}
+                                          label="Jogar com dinheiro STX"
+                                          defaultChecked={withMoney}
+                                          onChange={switchMoney}
+                                        />
+                                      </Col>
+
+                                      {withMoney}
                                     </Row>
                                   </div>
-                                  <Button type="button" key={i} id={`save-bet-${item.id}`} className="save-bet"
+                                  <Button type="button" id={`save-bet-${item.id}`} className="save-bet"
                                     disabled={true}
                                     onClick={() => saveMatchBet(item)}>Salvar palpite</Button>
+
+                                  <Button type="button" id={`finish-bet-${item.id}`} variant="light" className="finish" onClick={() => test(item)}>Finalizar palpite</Button>
                                 </Card.Body>
                               </Card>
                             </Col>
