@@ -1,6 +1,7 @@
 import React from "react";
 import { AppConfig, showConnect, UserSession } from "@stacks/connect";
 import { Button } from "react-bootstrap";
+import "../CallWallet.css";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 
@@ -9,10 +10,10 @@ export const userSession = new UserSession({ appConfig });
 function authenticate() {
   showConnect({
     appDetails: {
-      name: "Stacks React Starter",
-      icon: window.location.origin + "/logo512.png",
+      name: "Conecte a sua carteira",
+      icon: "https://i.pinimg.com/564x/c4/63/98/c4639855e84f992b7dbed318972b86fd.jpg",
     },
-    redirectTo: "/user",
+    redirectTo: "/",
     onFinish: () => {
       console.log('logdd');
       window.location.reload();
@@ -40,7 +41,7 @@ const ConnectWallet = () => {
   }
 
   return (
-    <Button variant="primary" onClick={authenticate}>
+    <Button className="btn-conect-wallet" onClick={authenticate}>
       Conectar carteira
     </Button>
   );

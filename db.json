@@ -356,6 +356,27 @@
       "betMade": false,
       "discountFromWallet": false,
       "id": 51
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 52
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 53
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "1",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 54
     }
   ],
   "user": [

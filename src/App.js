@@ -36,44 +36,48 @@ function App() {
   //         {/* <ContractCallVote /> */}
   return (
     <>
-      {/* <div className="App">
-        <header className="App-header">
-          <img src="https://i.pinimg.com/564x/c4/63/98/c4639855e84f992b7dbed318972b86fd.jpg" className="App-logo" alt="logo" />
+      {
+        !userSession.isUserSignedIn() ?
+          <div className="App">
+            <header className="App-header">
+              <img src="https://i.pinimg.com/564x/c4/63/98/c4639855e84f992b7dbed318972b86fd.jpg" className="App-logo" alt="logo" />
 
-          <h2>Bem vindo ao Corneta</h2>
-          <ConnectWallet />
-          <p>
-            Conecte sua carteira para ter acesso à aplicação
-          </p>
-        </header>
-      </div> */}
+              <h2>Bem vindo ao Corneta</h2>
+              <ConnectWallet />
+              <p>
+                Conecte sua carteira para ter acesso à aplicação
+              </p>
+            </header>
+          </div> : <Container fluid>
+            <Navbar className="navbar">
+              <Container>
+                <Navbar.Brand href="#home" className="brand">
+                  <img
+                    src="https://img.icons8.com/external-stickers-smashing-stocks/70/000000/external-26-independence-day-4th-of-july-stickers-smashing-stocks.png"
+                    width="50"
+                    height="50"
+                    className="d-inline-block align-top"
+                    alt="React Bootstrap logo"
+                  />{' '}
+                  Corneta
+                </Navbar.Brand>
+                <Navbar.Toggle />
+                <Navbar.Collapse className="justify-content-end">
+                  <Navbar.Text>
+                    <ConnectWallet />
+                  </Navbar.Text>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
 
-      <Container fluid>
-        <Navbar className="navbar">
-          <Container>
-            <Navbar.Brand href="#home" className="brand">
-            <img
-              src="https://img.icons8.com/external-stickers-smashing-stocks/70/000000/external-26-independence-day-4th-of-july-stickers-smashing-stocks.png"
-              width="50"
-              height="50"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            />{' '}
-            Corneta
-            </Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                <ConnectWallet />
-              </Navbar.Text>
-            </Navbar.Collapse>
+            <Container>
+              <ContractCallCorneta />
+            </Container>
           </Container>
-        </Navbar>
+      }
 
-        <Container>
-          <ContractCallCorneta/>
-        </Container>
-      </Container>
+
+
 
     </>
   );
