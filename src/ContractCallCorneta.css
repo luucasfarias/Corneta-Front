@@ -80,3 +80,17 @@
   background-color: #8a1538 !important;
   border: 1px solid #8a1538 !important;
 }
+
+.container-form {
+  margin-top: 30px;
+  width: 600px;
+}
+
+.card-form {
+  padding: 20px;
+}
+
+.btn-form {
+  background-color: #8a1538 !important;
+  border-color: #8a1538 !important;
+}

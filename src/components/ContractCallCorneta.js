@@ -10,7 +10,7 @@ import {
 import { userSession } from "./ConnectWallet";
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from "react";
-import { Badge, ButtonGroup, Card, Col, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import { Badge, ButtonGroup, Card, Col, Container, Dropdown, DropdownButton, Form, Row } from "react-bootstrap";
 import "../ContractCallCorneta.css";
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
@@ -31,6 +31,18 @@ const ContractCallCorneta = () => {
   const [guessVisitingTeam, setGuessVisitingTeam] = useState('');
   const [roundSelected, setRoundSelected] = useState(defaultRound);
 
+  const [newUser, setNewUser] = useState(null);
+  const [state, setState] = useState({
+    nickName: "",
+    email: "",
+    blockChainCode: userSession.loadUserData().profile.stxAddress.testnet
+  });
+  const [error, setError] = useState(null);
+  const [nickName, setNickName] = useState('');
+  const [email, setEmail] = useState('');
+  const [buttonDisable, setButtonDisable] = useState(true);
+  const [errorNickName, setErrorNickName] = useState(false);
+
   const headers = {
     'Content-Type': 'application/json',
     "Access-Control-Allow-Origin": "*"
@@ -38,7 +50,21 @@ const ContractCallCorneta = () => {
 
   useEffect(() => {
     loadMatchBet(defaultRound);
+    userExists();
   }, []);
+
+  function userExists() {
+    axios.post(`http://44.201.160.92/corneta/user/signin`,
+      { blockChainCode: userSession.loadUserData().profile.stxAddress.testnet },
+      { headers: headers }).then((response) => {
+        setNewUser(false);
+      }).catch((err) => {
+        console.log(' deu erro: ', err);
+        if (err.response.status === 401) {
+          setNewUser(true);
+        }
+      })
+  }
 
   // TODO: Alterar para url de prod
   function loadMatchBet(round) {
@@ -82,7 +108,7 @@ const ContractCallCorneta = () => {
       document.getElementById(`save-bet-${match.id}`).addEventListener("click", function (event) {
         event.preventDefault();
         console.log(event);
-        if(!event.detail || event.detail === 1){
+        if (!event.detail || event.detail === 1) {
           callSaveMatch(match);
           document.getElementById(`save-bet-${match.id}`).disabled = true;
           event.stopPropagation();
@@ -159,6 +185,18 @@ const ContractCallCorneta = () => {
     theme: "light",
   });
 
+  const notifyNewUser = () => toast.success(
+    'Cadastro efetuado com sucesso', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
   const tupCV = tupleCV({
     id: intCV(2), // TODO: tirar ID em prod
     s1: intCV(2),
@@ -205,78 +243,173 @@ const ContractCallCorneta = () => {
     return null;
   }
 
+  function isValidEmail(email) {
+    // eslint-disable-next-line no-useless-escape
+    const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+    return regex.test(email); 
+  }
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    console.log(event, name, value);
+    if (!isValidEmail(value)) {
+      setError('Email invalido');
+    } else {
+      setError(null);
+    }
+    setState((prevProps) => ({
+      ...prevProps,
+      [name]: value
+    }));
+  };
+
+  const handleInputNickName = (event) => {
+    console.log(event.target.value.length);
+    if (event.target.value.length === 0) {
+      console.log('aqui');
+      setErrorNickName(true);
+    } else {
+      setErrorNickName(false);
+      setNickName(event.target.value);
+    }
+  }
+
+  const handleInputEmail = (event) => {
+    console.log(event.target.value);
+    if (!isValidEmail(event.target.value)) {
+      setError('Email invalido');
+    } else {
+      setError(null);
+      setEmail(event.target.value);
+    }
+  }
+
+  const clearFields = () => {
+    const initialState = {
+      nickName: "",
+      email: "",
+      identityAddress: JSON.parse(localStorage.getItem('blockstack-session')).userData.identityAddress
+    };
+
+    setState({ ...initialState });
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(state);
+    notifyNewUser();
+    setNewUser(false);
+    // axios.post(`${url}/corneta/user`, state, { headers: headers }).then((response) => {
+    //   console.log(response);
+    //   if (response.status === 201) {
+    //     clearFields();
+    //     // navigate("/home");
+    //   }
+    // })
+  };
+
+
+
 
   return (
     <>
-      <ButtonGroup className="menu-round" aria-label="Basic example">
-        <Button variant="light" onClick={() => loadMatchBet(defaultRound)}>1ª Rodada</Button>
-        <Button variant="light" onClick={() => loadMatchBet('Grupos 2')}>2ª Rodada</Button>
-        <Button variant="light" onClick={() => loadMatchBet('Grupos 3')}>3ª Rodada</Button>
-      </ButtonGroup>
-
-      <ToastContainer />
-
       {
-        match && (
-          Array.from({ length: Math.ceil(match.length / 4) }, (_, i) => {
-            return (
-              <Row className="box-row" key={i}>
-                {
-                  match.slice(i * 4, (i + 1) * 4).map((item, i) => {
-                    return (
-                      <Col className="col-cards" key={i}>
-                        <Card className="card-width">
-                          <Card.Body>
-                            <Card.Title>
-                              {item.round}
-                            </Card.Title>
-                            <hr></hr>
-                            <Card.Subtitle className="mb-2 text-muted">
-                              <div className="details">
-                                <div>{item.round}</div>
+        newUser === true ?
+          <>
+          <Container className="container-form">
+            <h2>Preencher cadastro</h2>
+            <Card className="card-form">
+              <Form>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Label>Nome ou apelido</Form.Label>
+                  <Form.Control type="text" name="nickName"
+                    onChange={handleInputNickName} required />
+                    {errorNickName && <span style={{color: 'red'}}>{errorNickName}</span>}
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                  <Form.Label>E-mail</Form.Label>
+                  <Form.Control type="email" name="email"
+                    onChange={handleInputEmail} required />
+                  {error && <span style={{color: 'red'}}>{error}</span>}
+                </Form.Group>
+                <Button className="btn-form" disabled={nickName.length <= 0 || (email.length <= 0 || error)} onClick={handleSubmit}>Cadastrar</Button>
+              </Form>
+            </Card>
+          </Container>
+          </> :
+          <>
+            <ButtonGroup className="menu-round" aria-label="Basic example">
+              <Button variant="light" onClick={() => loadMatchBet(defaultRound)}>1ª Rodada</Button>
+              <Button variant="light" onClick={() => loadMatchBet('Grupos 2')}>2ª Rodada</Button>
+              <Button variant="light" onClick={() => loadMatchBet('Grupos 3')}>3ª Rodada</Button>
+            </ButtonGroup>
 
-                                <Link to={'messages'} state={{ idBet: 1, idUser: 1 }}>
-                                  <Button variant="link">Visualizar detalhes</Button>
-                                </Link>
-                              </div>
-                            </Card.Subtitle>
-                            <div>
-                              <span className="box-match">
-                                <div className="teams">
-                                  <label>{item.homeTeam.initials}</label>
-                                  <div className={`flag fi fi-${item.homeTeam.flag}`}></div>
-                                  <input type="number" id={`score-board-${item.id}`} min="0" max="10" value={item.name} onChange={scoreboardHomeTeam(item.id)} />
-                                </div>
-                                <i className="fa-sharp fa-solid fa-x"></i>
-                                <div className="teams">
-                                  <input type="number" id={`score-board-${item.id}`} min="0" max="10" value={item.name} onChange={scoreboardVisitingTeam(item.id)} />
-                                  <div className={`flag fi fi-${item.visitingTeam.flag}`}></div>
-                                  <label className="visitingTeam">{item.visitingTeam.initials}</label>
-                                </div>
-                              </span>
+            <ToastContainer />
+            {
+              match && (
+                Array.from({ length: Math.ceil(match.length / 4) }, (_, i) => {
+                  return (
+                    <Row className="box-row" key={i}>
+                      {
+                        match.slice(i * 4, (i + 1) * 4).map((item, i) => {
+                          return (
+                            <Col className="col-cards" key={i}>
+                              <Card className="card-width">
+                                <Card.Body>
+                                  <Card.Title>
+                                    {item.round}
+                                  </Card.Title>
+                                  <hr></hr>
+                                  <Card.Subtitle className="mb-2 text-muted">
+                                    <div className="details">
+                                      <div>{item.round}</div>
 
-                              <Row>
-                                <Col className="box-info-match">
-                                  <Badge pill bg="light" text="dark">
-                                    <i className="icon fa-regular fa-calendar-days"></i>
-                                    {sanitizeDate(item.gameDate)}
-                                  </Badge>
-                                </Col>
-                              </Row>
-                            </div>
-                            <Button key={i} id={`save-bet-${item.id}`} className="save-bet"
-                              disabled={true}
-                              onClick={() => saveMatchBet(item)}>Salvar palpite</Button>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    )
-                  })
-                }
-              </Row>
-            )
-          })
-        )
+                                      <Link to={'messages'} state={{ idBet: 1, idUser: 1 }}>
+                                        <Button variant="link">Visualizar detalhes</Button>
+                                      </Link>
+                                    </div>
+                                  </Card.Subtitle>
+                                  <div>
+                                    <span className="box-match">
+                                      <div className="teams">
+                                        <label>{item.homeTeam.initials}</label>
+                                        <div className={`flag fi fi-${item.homeTeam.flag}`}></div>
+                                        <input type="number" id={`score-board-${item.id}`} min="0" max="10" value={item.name} onChange={scoreboardHomeTeam(item.id)} />
+                                      </div>
+                                      <i className="fa-sharp fa-solid fa-x"></i>
+                                      <div className="teams">
+                                        <input type="number" id={`score-board-${item.id}`} min="0" max="10" value={item.name} onChange={scoreboardVisitingTeam(item.id)} />
+                                        <div className={`flag fi fi-${item.visitingTeam.flag}`}></div>
+                                        <label className="visitingTeam">{item.visitingTeam.initials}</label>
+                                      </div>
+                                    </span>
+
+                                    <Row>
+                                      <Col className="box-info-match">
+                                        <Badge pill bg="light" text="dark">
+                                          <i className="icon fa-regular fa-calendar-days"></i>
+                                          {sanitizeDate(item.gameDate)}
+                                        </Badge>
+                                      </Col>
+                                    </Row>
+                                  </div>
+                                  <Button key={i} id={`save-bet-${item.id}`} className="save-bet"
+                                    disabled={true}
+                                    onClick={() => saveMatchBet(item)}>Salvar palpite</Button>
+                                </Card.Body>
+                              </Card>
+                            </Col>
+                          )
+                        })
+                      }
+                    </Row>
+                  )
+                })
+              )
+            }
+
+          </>
       }
     </>
   );
