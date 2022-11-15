@@ -377,6 +377,90 @@
       "betMade": false,
       "discountFromWallet": false,
       "id": 54
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 55
+    },
+    {
+      "guessHomeTeam": "2",
+      "guessVisitingTeam": "3",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 56
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "3",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 57
+    },
+    {
+      "guessHomeTeam": "3",
+      "guessVisitingTeam": "3",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 58
+    },
+    {
+      "guessHomeTeam": "1",
+      "guessVisitingTeam": "3",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 59
+    },
+    {
+      "guessHomeTeam": "2",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 60
+    },
+    {
+      "guessHomeTeam": "2",
+      "guessVisitingTeam": "2",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 61
+    },
+    {
+      "guessHomeTeam": "3",
+      "guessVisitingTeam": "3",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 62
+    },
+    {
+      "guessHomeTeam": "5",
+      "guessVisitingTeam": "5",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 63
+    },
+    {
+      "guessHomeTeam": "3",
+      "guessVisitingTeam": "4",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 64
+    },
+    {
+      "guessHomeTeam": "2",
+      "guessVisitingTeam": "3",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 65
+    },
+    {
+      "guessHomeTeam": "3",
+      "guessVisitingTeam": "4",
+      "betMade": false,
+      "discountFromWallet": false,
+      "id": 66
     }
   ],
   "user": [
@@ -439,6 +523,36 @@
       "idUserFrom": 1,
       "message": "fsfsfdsfdsfsd",
       "id": 8
+    },
+    {
+      "idBetTo": 12,
+      "idUserFrom": 1,
+      "message": "fsfds",
+      "id": 9
+    },
+    {
+      "idBetTo": 12,
+      "idUserFrom": 1,
+      "message": "teste",
+      "id": 10
+    },
+    {
+      "idBetTo": 12,
+      "idUserFrom": 1,
+      "message": "teste",
+      "id": 11
+    },
+    {
+      "idBetTo": 12,
+      "idUserFrom": 1,
+      "message": "teste",
+      "id": 12
+    },
+    {
+      "idBetTo": 12,
+      "idUserFrom": 1,
+      "message": "teste",
+      "id": 13
     }
   ],
   "receivedMessage": [
@@ -495,7 +609,7 @@
       "id": 6
     }
   ],
-  "bet": [
+  "matches": [
     {
       "id": 1,
       "homeTeam": {

@@ -94,3 +94,13 @@
   background-color: #8a1538 !important;
   border-color: #8a1538 !important;
 }
+
+input[type=number]::-webkit-inner-spin-button { 
+  -webkit-appearance: none;
+  
+}
+input[type=number] { 
+ -moz-appearance: textfield;
+ appearance: textfield;
+
+}

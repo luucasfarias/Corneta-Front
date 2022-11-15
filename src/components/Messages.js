@@ -4,6 +4,7 @@ import { Button, Card, Col, Container, Form, Navbar, Row } from 'react-bootstrap
 import { Link, useLocation } from 'react-router-dom';
 import ConnectWallet from './ConnectWallet';
 import "../Message.css"
+import { toast, ToastContainer } from 'react-toastify';
 
 // URL publicada http://44.201.160.92/
 const Messages = () => {
@@ -31,6 +32,18 @@ const Messages = () => {
     console.log(event.target.value);
   };
 
+  const notifyMessage = () => toast.success(
+    'Mensagem enviada com sucesso', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
   const createComment = () => {
     const messageData = {
       idBetTo: 12,
@@ -38,12 +51,17 @@ const Messages = () => {
       message: comment
     }
 
+    console.log(messageData);
+
     axios.post('http://localhost:3000/message', messageData).then((response) => {
       console.log(response);
       setComment('');
       getReceivedComments();
+      notifyMessage();
     });
   }
+
+  
 
   return (
     <>
@@ -67,6 +85,8 @@ const Messages = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <ToastContainer />
 
       <Container>
         <Row>

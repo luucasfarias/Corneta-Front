@@ -61,14 +61,15 @@ const ContractCallCorneta = () => {
       }).catch((err) => {
         console.log(' deu erro: ', err);
         if (err.response.status === 401) {
-          setNewUser(true);
+          setNewUser(false); /// mudar pra true
         }
       })
   }
 
   // TODO: Alterar para url de prod
   function loadMatchBet(round) {
-    axios.get(`${url}/bet`, { headers: headers }).then((response) => {
+    // const url = 'http://44.201.160.92/corneta/matches';
+    axios.get(`${url}/matches`, { headers: headers }).then((response) => {
       const group = response.data.filter((match) => match.round === round);
       console.log(group);
 
@@ -106,11 +107,10 @@ const ContractCallCorneta = () => {
     if (match.homeTeam.scoreboard.length >= 0 && match.visitingTeam.scoreboard.length >= 0) {
       document.getElementById(`save-bet-${match.id}`).disabled = false;
       document.getElementById(`save-bet-${match.id}`).addEventListener("click", function (event) {
+        document.getElementById(`save-bet-${match.id}`).disabled = true;
         event.preventDefault();
-        console.log(event);
         if (!event.detail || event.detail === 1) {
           callSaveMatch(match);
-          document.getElementById(`save-bet-${match.id}`).disabled = true;
           event.stopPropagation();
         }
       });
@@ -137,6 +137,7 @@ const ContractCallCorneta = () => {
 
     console.log('bet: ', bet);
 
+    // /corneta/bet/{idBet}/user/{idUser}
     // localhost:8888/corneta/bet/{idBet}/user/{idUser}
     // O id do match eh id da bet
     axios.post(`${url}/doBetForUser`, bet).then((response) => {
@@ -247,7 +248,7 @@ const ContractCallCorneta = () => {
     // eslint-disable-next-line no-useless-escape
     const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-    return regex.test(email); 
+    return regex.test(email);
   }
 
   const handleInputChange = (event) => {
@@ -317,26 +318,26 @@ const ContractCallCorneta = () => {
       {
         newUser === true ?
           <>
-          <Container className="container-form">
-            <h2>Preencher cadastro</h2>
-            <Card className="card-form">
-              <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                  <Form.Label>Nome ou apelido</Form.Label>
-                  <Form.Control type="text" name="nickName"
-                    onChange={handleInputNickName} required />
-                    {errorNickName && <span style={{color: 'red'}}>{errorNickName}</span>}
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                  <Form.Label>E-mail</Form.Label>
-                  <Form.Control type="email" name="email"
-                    onChange={handleInputEmail} required />
-                  {error && <span style={{color: 'red'}}>{error}</span>}
-                </Form.Group>
-                <Button className="btn-form" disabled={nickName.length <= 0 || (email.length <= 0 || error)} onClick={handleSubmit}>Cadastrar</Button>
-              </Form>
-            </Card>
-          </Container>
+            <Container className="container-form">
+              <h2>Preencher cadastro</h2>
+              <Card className="card-form">
+                <Form>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Nome ou apelido</Form.Label>
+                    <Form.Control type="text" name="nickName"
+                      onChange={handleInputNickName} required />
+                    {errorNickName && <span style={{ color: 'red' }}>{errorNickName}</span>}
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                    <Form.Label>E-mail</Form.Label>
+                    <Form.Control type="email" name="email"
+                      onChange={handleInputEmail} required />
+                    {error && <span style={{ color: 'red' }}>{error}</span>}
+                  </Form.Group>
+                  <Button className="btn-form" disabled={nickName.length <= 0 || (email.length <= 0 || error)} onClick={handleSubmit}>Cadastrar</Button>
+                </Form>
+              </Card>
+            </Container>
           </> :
           <>
             <ButtonGroup className="menu-round" aria-label="Basic example">
@@ -346,6 +347,14 @@ const ContractCallCorneta = () => {
             </ButtonGroup>
 
             <ToastContainer />
+
+            {/* {
+              match && match[0].round === 'Grupos 1' ? <h2>Jogos da 1ª rodada</h2> :
+                match[0].round === 'Grupos 2' ? <h2>Jogos da 2ª rodada</h2> : <h2>Jogos da 3ª rodada</h2>
+            } */}
+
+            <h2>Lista de jogos</h2>
+
             {
               match && (
                 Array.from({ length: Math.ceil(match.length / 4) }, (_, i) => {
@@ -358,12 +367,18 @@ const ContractCallCorneta = () => {
                               <Card className="card-width">
                                 <Card.Body>
                                   <Card.Title>
-                                    {item.round}
+                                    {item.round === 'Grupos 1' ? <span>1ª Rodada</span> : item.round === 'Grupos 2' ? <span>2ª Rodada</span> : <span>3ª Rodada</span>}
                                   </Card.Title>
                                   <hr></hr>
                                   <Card.Subtitle className="mb-2 text-muted">
                                     <div className="details">
-                                      <div>{item.round}</div>
+                                      <img
+                                        src="https://i.pinimg.com/564x/c4/63/98/c4639855e84f992b7dbed318972b86fd.jpg"
+                                        width="70"
+                                        height="70"
+                                        className="d-inline-block align-top"
+                                        alt="logo"
+                                      />{' '}
 
                                       <Link to={'messages'} state={{ idBet: 1, idUser: 1 }}>
                                         <Button variant="link">Visualizar detalhes</Button>
@@ -394,7 +409,7 @@ const ContractCallCorneta = () => {
                                       </Col>
                                     </Row>
                                   </div>
-                                  <Button key={i} id={`save-bet-${item.id}`} className="save-bet"
+                                  <Button type="button" key={i} id={`save-bet-${item.id}`} className="save-bet"
                                     disabled={true}
                                     onClick={() => saveMatchBet(item)}>Salvar palpite</Button>
                                 </Card.Body>
