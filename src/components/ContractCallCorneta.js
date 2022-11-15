@@ -49,14 +49,17 @@ const ContractCallCorneta = () => {
   const [errorNickName, setErrorNickName] = useState(false);
 
   const headers = {
+    'Accept': '*',
     'Content-Type': 'application/json',
-    "Access-Control-Allow-Origin": "*"
+    "Access-Control-Allow-Origin": "*",
+    'Authorization': '*'
   }
 
   useEffect(() => {
     loadMatchBet(defaultRound);
     userExists();
   }, []);
+
 
   function userExists() {
     axios.post(`http://44.201.160.92/corneta/user/signin`,
@@ -66,14 +69,14 @@ const ContractCallCorneta = () => {
       }).catch((err) => {
         console.log(' deu erro: ', err);
         if (err.response.status === 401) {
-          setNewUser(false); /// mudar pra true
+          setNewUser(false); // mudar pra true
         }
       })
   }
 
   // TODO: Alterar para url de prod
   function loadMatchBet(round) {
-    // const url = 'http://44.201.160.92/corneta/matches';
+    const url = 'http://44.201.160.92/corneta/matches';
     axios.get(`${url}/matches`, { headers: headers }).then((response) => {
       const group = response.data.filter((match) => match.round === round);
       console.log(group);
@@ -213,47 +216,6 @@ const ContractCallCorneta = () => {
     progress: undefined,
     theme: "light",
   });
-
-  const tupCV = tupleCV({
-    id: intCV(2), // TODO: tirar ID em prod
-    s1: intCV(2),
-    s2: intCV(3),
-    free: falseCV(),
-  });
-
-
-  // function saveMatchBet(item) {
-  //   // console.log(item);
-  //   doContractCall({
-  //     network: new StacksTestnet(),
-  //     anchorMode: AnchorMode.Any,
-  //     contractAddress: "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC",
-  //     contractName: "bet-test-nara",
-  //     functionName: "save-bet",
-  //     functionArgs: [tupCV],
-  //     postConditionMode: PostConditionMode.Allow,
-  //     postConditions: [],
-  //     onFinish: (data) => {
-  //       console.log("onFinish:", data);
-  //       saveDoBetForUser(item);
-  //       notify();
-  //       // Primeiro salva do lado da blockchain
-  //       // No response da transacao com a blockchain pegar o txId e salvar no userBet da API Corneta
-  //       // Depois de finalizado salva na api corneta
-
-  //       // window
-  //       //   .open(
-  //       //     `https://explorer.stacks.co/txid/${data.txId}?chain=testnet`,
-  //       //     "_blank"
-  //       //   )
-  //       //   .focus();
-  //     },
-  //     onCancel: () => {
-  //       notifyError();
-  //       console.log("onCancel:", "Transaction was canceled");
-  //     },
-  //   });
-  // }
 
   const postConditionCode = FungibleConditionCode.Equal;
   const postConditionAmount = withMoney === true ? 5000000n : 0n;
