@@ -114,3 +114,8 @@ input[type=number] {
   margin-top: 10px;
   width: 100%;
 }
+
+.block-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

@@ -71,3 +71,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 https://www.postman.com/collections/f9d45df68de0bfbf032e
+
+Flag icons
+https://flagicons.lipis.dev/
+
+pegar dinheiro stx
+https://explorer.stacks.co/

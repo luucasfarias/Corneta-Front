@@ -67,7 +67,6 @@ const ContractCallCorneta = () => {
       { headers: headers }).then((response) => {
         setNewUser(false);
       }).catch((err) => {
-        console.log(' deu erro: ', err);
         if (err.response.status === 401) {
           setNewUser(false); // mudar pra true
         }
@@ -76,32 +75,29 @@ const ContractCallCorneta = () => {
 
   // TODO: Alterar para url de prod
   function loadMatchBet(round) {
-    const url = 'http://44.201.160.92/corneta/matches';
-    axios.get(`${url}/matches`, { headers: headers }).then((response) => {
-      const group = response.data.filter((match) => match.round === round);
-      console.log(group);
+    // const url = 'http://44.201.160.92/corneta/matches';
+    axios.get(`${url}/bets`, { headers: headers }).then((response) => {
+      const group = response.data.filter((bet) => bet.match.round === round);
       setMatch(group);
     });
   }
 
   const scoreboardHomeTeam = index => e => {
-    console.log('Value: ', index, e.target.value);
-    const indexInArray = match.findIndex((match) => match.id === index);
+    const indexInArray = match.findIndex((bet) => bet.match.id === index);
     console.log(indexInArray);
     setGuessHomeTeam(e.target.value);
     const matchCopy = [...match];
-    matchCopy[indexInArray].homeTeam.scoreboard = e.target.value;
+    matchCopy[indexInArray].match.homeTeam.scoreboard = e.target.value;
     console.log('matchCopy: ', matchCopy);
     setMatch(matchCopy);
     hasScoreboard(matchCopy[indexInArray]);
   }
 
   const scoreboardVisitingTeam = index => e => {
-    console.log('visiting: ', e.target.value);
-    const indexInArray = match.findIndex((match) => match.id === index);
+    const indexInArray = match.findIndex((bet) => bet.match.id === index);
     setGuessVisitingTeam(e.target.value);
     const matchCopy = [...match];
-    matchCopy[indexInArray].visitingTeam.scoreboard = e.target.value;
+    matchCopy[indexInArray].match.visitingTeam.scoreboard = e.target.value;
     setMatch(matchCopy);
     hasScoreboard(matchCopy[indexInArray]);
   }
@@ -110,21 +106,21 @@ const ContractCallCorneta = () => {
     saveMatchBet(item);
   }
 
-  function hasScoreboard(match) {
-    if (match.homeTeam.scoreboard.length >= 0 && match.visitingTeam.scoreboard.length >= 0) {
-      document.getElementById(`save-bet-${match.id}`).disabled = false;
-      document.getElementById(`save-bet-${match.id}`).addEventListener("click", function (event) {
-        document.getElementById(`save-bet-${match.id}`).disabled = true;
+  function hasScoreboard(bet) {
+    if (bet.match.homeTeam.scoreboard.length >= 0 && bet.match.visitingTeam.scoreboard.length >= 0) {
+      document.getElementById(`save-bet-${bet.match.id}`).disabled = false;
+      document.getElementById(`save-bet-${bet.match.id}`).addEventListener("click", function (event) {
+        document.getElementById(`save-bet-${bet.match.id}`).disabled = true;
         event.preventDefault();
         if (!event.detail || event.detail === 1) {
-          callSaveMatch(match);
+          callSaveMatch(bet);
           event.stopPropagation();
         }
       });
     }
 
-    if (match.homeTeam.scoreboard.length <= 0 || match.visitingTeam.scoreboard.length <= 0) {
-      document.getElementById(`save-bet-${match.id}`).disabled = true;
+    if (bet.match.homeTeam.scoreboard.length <= 0 || bet.match.visitingTeam.scoreboard.length <= 0) {
+      document.getElementById(`save-bet-${bet.match.id}`).disabled = true;
     }
   }
 
@@ -136,8 +132,8 @@ const ContractCallCorneta = () => {
   const saveDoBetForUser = (item, i) => {
     console.log(item);
     const bet = {
-      guessHomeTeam: item.homeTeam.scoreboard,
-      guessVisitingTeam: item.visitingTeam.scoreboard,
+      guessHomeTeam: item.match.homeTeam.scoreboard,
+      guessVisitingTeam: item.match.visitingTeam.scoreboard,
       betMade: false,
       discountFromWallet: false
     };
@@ -149,14 +145,14 @@ const ContractCallCorneta = () => {
     // O id do match eh id da bet
     axios.post(`${url}/doBetForUser`, bet).then((response) => {
       console.log('aposta salva: ', response);
-      delete item.homeTeam.scoreboard;
-      delete item.visitingTeam.scoreboard;
+      delete item.match.homeTeam.scoreboard;
+      delete item.match.visitingTeam.scoreboard;
 
-      Array.from(document.querySelectorAll(`#score-board-${item.id}`)).forEach(
+      Array.from(document.querySelectorAll(`#score-board-${item.match.id}`)).forEach(
         input => (input.value = "")
       );
 
-      document.getElementById(`save-bet-${item.id}`).disabled = true;
+      document.getElementById(`save-bet-${item.match.id}`).disabled = true;
     });
   }
 
@@ -237,8 +233,8 @@ const ContractCallCorneta = () => {
       contractName: `${splitHashCode[1]}`,
       functionName: "save-bet",
       functionArgs: [tupleCV({
-        s1: intCV(item.homeTeam.scoreboard),
-        s2: intCV(item.visitingTeam.scoreboard),
+        s1: intCV(item.match.homeTeam.scoreboard),
+        s2: intCV(item.match.visitingTeam.scoreboard),
         free: falseCV()
       })],
       postConditionMode: PostConditionMode.Deny,
@@ -401,11 +397,13 @@ const ContractCallCorneta = () => {
             </Container>
           </> :
           <>
+            {/* 
+              TODO: Habilitar depois
             <ButtonGroup className="menu-round" aria-label="Basic example">
               <Button variant="light" onClick={() => loadMatchBet(defaultRound)}>1ª Rodada</Button>
               <Button variant="light" onClick={() => loadMatchBet('Grupos 2')}>2ª Rodada</Button>
               <Button variant="light" onClick={() => loadMatchBet('Grupos 3')}>3ª Rodada</Button>
-            </ButtonGroup>
+            </ButtonGroup> */}
 
             <ToastContainer />
 
@@ -414,7 +412,9 @@ const ContractCallCorneta = () => {
                 match[0].round === 'Grupos 2' ? <h2>Jogos da 2ª rodada</h2> : <h2>Jogos da 3ª rodada</h2>
             } */}
 
-            <h2>Lista de jogos</h2>
+            <div className='block-title'>
+              <h2>Lista de jogos</h2>
+            </div>
 
             {
               match && (
@@ -428,7 +428,8 @@ const ContractCallCorneta = () => {
                               <Card className="card-width">
                                 <Card.Body>
                                   <Card.Title>
-                                    {item.round === 'Grupos 1' ? <span>1ª Rodada</span> : item.round === 'Grupos 2' ? <span>2ª Rodada</span> : <span>3ª Rodada</span>}
+                                    <span>Grupo {item.match.homeTeam.group}</span> { ' - ' }
+                                    {item.match.round === 'Grupos 1' ? <span>1ª Rodada</span> : item.match.round === 'Grupos 2' ? <span>2ª Rodada</span> : <span>3ª Rodada</span>}
                                   </Card.Title>
                                   <hr></hr>
                                   <Card.Subtitle className="mb-2 text-muted">
@@ -449,15 +450,15 @@ const ContractCallCorneta = () => {
                                   <div>
                                     <span className="box-match">
                                       <div className="teams">
-                                        <label>{item.homeTeam.initials}</label>
-                                        <div className={`flag fi fi-${item.homeTeam.flag}`}></div>
-                                        <input type="number" id={`score-board-${item.id}`} min="0" max="10" value={item.name} onChange={scoreboardHomeTeam(item.id)} />
+                                        <label>{item.match.homeTeam.initials}</label>
+                                        <div className={`flag fi fi-${item.match.homeTeam.flag}`}></div>
+                                        <input type="number" id={`score-board-${item.match.id}`} min="0" max="10" value={item.match.name} onChange={scoreboardHomeTeam(item.match.id)} />
                                       </div>
                                       <i className="fa-sharp fa-solid fa-x"></i>
                                       <div className="teams">
-                                        <input type="number" id={`score-board-${item.id}`} min="0" max="10" value={item.name} onChange={scoreboardVisitingTeam(item.id)} />
-                                        <div className={`flag fi fi-${item.visitingTeam.flag}`}></div>
-                                        <label className="visitingTeam">{item.visitingTeam.initials}</label>
+                                        <input type="number" id={`score-board-${item.match.id}`} min="0" max="10" value={item.match.name} onChange={scoreboardVisitingTeam(item.match.id)} />
+                                        <div className={`flag fi fi-${item.match.visitingTeam.flag}`}></div>
+                                        <label className="visitingTeam">{item.match.visitingTeam.initials}</label>
                                       </div>
                                     </span>
 
@@ -465,7 +466,7 @@ const ContractCallCorneta = () => {
                                       <Col className="box-info-match">
                                         <Badge pill bg="light" text="dark">
                                           <i className="icon fa-regular fa-calendar-days"></i>
-                                          {sanitizeDate(item.gameDate)}
+                                          {sanitizeDate(item.match.gameDate)}
                                         </Badge>
                                       </Col>
 
@@ -473,7 +474,7 @@ const ContractCallCorneta = () => {
                                         <Form.Check
                                           className="with-money"
                                           type="switch"
-                                          id={`custom-switch-${item.id}`}
+                                          id={`custom-switch-${item.match.id}`}
                                           label="Jogar com dinheiro STX"
                                           defaultChecked={withMoney}
                                           onChange={switchMoney}
@@ -483,11 +484,11 @@ const ContractCallCorneta = () => {
                                       {withMoney}
                                     </Row>
                                   </div>
-                                  <Button type="button" id={`save-bet-${item.id}`} className="save-bet"
+                                  <Button type="button" id={`save-bet-${item.match.id}`} className="save-bet"
                                     disabled={true}
-                                    onClick={() => saveMatchBet(item)}>Salvar palpite</Button>
+                                    onClick={() => saveMatchBet(item.match)}>Salvar palpite</Button>
 
-                                  <Button type="button" id={`finish-bet-${item.id}`} variant="light" className="finish" onClick={() => test(item)}>Finalizar palpite</Button>
+                                  <Button type="button" id={`finish-bet-${item.match.id}`} variant="light" className="finish" onClick={() => test(item.match)}>Finalizar palpite</Button>
                                 </Card.Body>
                               </Card>
                             </Col>
