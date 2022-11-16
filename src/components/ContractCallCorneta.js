@@ -15,7 +15,7 @@ import { userSession } from "./ConnectWallet";
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from "react";
 import { Badge, ButtonGroup, Card, Col, Container, Dropdown, DropdownButton, Form, Row } from "react-bootstrap";
-import "../ContractCallCorneta.css";
+import "../css/ContractCallCorneta.css";
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -75,85 +75,85 @@ const ContractCallCorneta = () => {
 
   // TODO: Alterar para url de prod
   function loadMatchBet(round) {
-    // const url = 'http://44.201.160.92/corneta/matches';
-    // axios.get(`${url}/bets`, { headers: headers }).then((response) => {
-    //   const group = response.data.filter((bet) => bet.match.round === round);
-    //   setMatch(group);
-    // });
+    const url = 'http://44.201.160.92/corneta/bet';
+    axios.get(`${url}`, { headers: headers }).then((response) => {
+      const group = response.data.filter((bet) => bet.match.round === round);
+      setMatch(group);
+    });
 
-    const mockBet = [
-      {
-        "id": 1,
-        "match": {
-          "id": 1,
-          "homeTeam": {
-            "id": 1,
-            "name": "Catar",
-            "initials": "CAT",
-            "group": "A",
-            "flag": "qa"
-          },
-          "visitingTeam": {
-            "id": 2,
-            "name": "Equador",
-            "initials": "EQU",
-            "group": "A",
-            "flag": "ec"
-          },
-          "gameDate": "2022-11-20T00:00:00",
-          "round": "Grupos 1"
-        },
-        "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match94"
-      },
-      {
-        "id": 2,
-        "match": {
-          "id": 2,
-          "homeTeam": {
-            "id": 3,
-            "name": "França",
-            "initials": "FRA",
-            "group": "D",
-            "flag": "fr"
-          },
-          "visitingTeam": {
-            "id": 4,
-            "name": "Austrália",
-            "initials": "AUS",
-            "group": "D",
-            "flag": "au"
-          },
-          "gameDate": "2022-11-22T00:00:00",
-          "round": "Grupos 1"
-        },
-        "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match95"
-      },
-      {
-        "id": 3,
-        "match": {
-          "id": 3,
-          "homeTeam": {
-            "id": 5,
-            "name": "Brasil",
-            "initials": "BRA",
-            "group": "G",
-            "flag": "br"
-          },
-          "visitingTeam": {
-            "id": 6,
-            "name": "Sérvia",
-            "initials": "SER",
-            "group": "G",
-            "flag": "rs"
-          },
-          "gameDate": "2022-11-24T00:00:00",
-          "round": "Grupos 1"
-        },
-        "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match93"
-      }
-    ];
+    // const mockBet = [
+    //   {
+    //     "id": 1,
+    //     "match": {
+    //       "id": 1,
+    //       "homeTeam": {
+    //         "id": 1,
+    //         "name": "Catar",
+    //         "initials": "CAT",
+    //         "group": "A",
+    //         "flag": "qa"
+    //       },
+    //       "visitingTeam": {
+    //         "id": 2,
+    //         "name": "Equador",
+    //         "initials": "EQU",
+    //         "group": "A",
+    //         "flag": "ec"
+    //       },
+    //       "gameDate": "2022-11-20T00:00:00",
+    //       "round": "Grupos 1"
+    //     },
+    //     "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match94"
+    //   },
+    //   {
+    //     "id": 2,
+    //     "match": {
+    //       "id": 2,
+    //       "homeTeam": {
+    //         "id": 3,
+    //         "name": "França",
+    //         "initials": "FRA",
+    //         "group": "D",
+    //         "flag": "fr"
+    //       },
+    //       "visitingTeam": {
+    //         "id": 4,
+    //         "name": "Austrália",
+    //         "initials": "AUS",
+    //         "group": "D",
+    //         "flag": "au"
+    //       },
+    //       "gameDate": "2022-11-22T00:00:00",
+    //       "round": "Grupos 1"
+    //     },
+    //     "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match95"
+    //   },
+    //   {
+    //     "id": 3,
+    //     "match": {
+    //       "id": 3,
+    //       "homeTeam": {
+    //         "id": 5,
+    //         "name": "Brasil",
+    //         "initials": "BRA",
+    //         "group": "G",
+    //         "flag": "br"
+    //       },
+    //       "visitingTeam": {
+    //         "id": 6,
+    //         "name": "Sérvia",
+    //         "initials": "SER",
+    //         "group": "G",
+    //         "flag": "rs"
+    //       },
+    //       "gameDate": "2022-11-24T00:00:00",
+    //       "round": "Grupos 1"
+    //     },
+    //     "contractHashCode": "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match93"
+    //   }
+    // ];
 
-    setMatch(mockBet);
+    // setMatch(mockBet);
   }
 
   const scoreboardHomeTeam = index => e => {
@@ -296,9 +296,7 @@ const ContractCallCorneta = () => {
     postConditionAmount
   );
 
-  //  "ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC", "bet-test-nara"
   function saveMatchBet(item) {
-    console.log(item);
     const splitHashCode = item.contractHashCode.split('.');
     doContractCall({
       network: new StacksTestnet(),
@@ -314,13 +312,7 @@ const ContractCallCorneta = () => {
       postConditionMode: PostConditionMode.Deny,
       postConditions: [contractSTXPostCondition],
       onFinish: (data) => {
-        console.log("onFinish:", data);
         saveDoBetForUser(item);
-        notify();
-        // Primeiro salva do lado da blockchain
-        // No response da transacao com a blockchain pegar o txId e salvar no userBet da API Corneta
-        // Depois de finalizado salva na api corneta
-
         window
           .open(
             `https://explorer.stacks.co/txid/${data.txId}?chain=testnet`,
@@ -336,7 +328,6 @@ const ContractCallCorneta = () => {
   }
 
   function finalizaMatchBet(item) {
-    console.log(item);
     const splitHashCode = item.contractHashCode.split('.');
     doContractCall({
       network: new StacksTestnet(),
@@ -344,7 +335,7 @@ const ContractCallCorneta = () => {
       contractAddress: `${splitHashCode[0]}`,
       contractName: `${splitHashCode[1]}`,
       functionName: "finalize-bet",
-      functionArgs: [intCV(item.match.homeTeam.scoreboard), intCV(item.match.visitingTeam.scoreboard)], // valores que serao o placar final do jogo
+      functionArgs: [intCV(item.match.homeTeam.scoreboard), intCV(item.match.visitingTeam.scoreboard)],
       postConditionMode: PostConditionMode.Deny,
       postConditions: [makeContractSTXPostCondition(
         splitHashCode[0],

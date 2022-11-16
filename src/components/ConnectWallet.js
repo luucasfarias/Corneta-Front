@@ -1,7 +1,7 @@
 import React from "react";
 import { AppConfig, showConnect, UserSession } from "@stacks/connect";
 import { Button } from "react-bootstrap";
-import "../CallWallet.css";
+import "../css/CallWallet.css";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 

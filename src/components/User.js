@@ -2,7 +2,7 @@ import { userSession } from "./ConnectWallet";
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from "react";
 import { Badge, ButtonGroup, Card, Col, Dropdown, DropdownButton, Form, Row } from "react-bootstrap";
-import "../ContractCallCorneta.css";
+import "../css/ContractCallCorneta.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
