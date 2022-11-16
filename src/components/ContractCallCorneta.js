@@ -315,18 +315,28 @@ const ContractCallCorneta = () => {
       postConditions: [contractSTXPostCondition],
       onFinish: (data) => {
         console.log("onFinish:", data);
-        saveDoBetForUser(item);
+        // saveDoBetForUser(item);
+        delete item.match.homeTeam.scoreboard;
+        delete item.match.visitingTeam.scoreboard;
+
+        Array.from(document.querySelectorAll(`#score-board-${item.match.id}`)).forEach(
+          input => (input.value = "")
+        );
+
+        document.getElementById(`save-bet-${item.match.id}`).disabled = true;
         notify();
         // Primeiro salva do lado da blockchain
         // No response da transacao com a blockchain pegar o txId e salvar no userBet da API Corneta
         // Depois de finalizado salva na api corneta
 
-        window
-          .open(
-            `https://explorer.stacks.co/txid/${data.txId}?chain=testnet`,
-            "_blank"
-          )
-          .focus();
+        setTimeout(() => {
+          window
+            .open(
+              `https://explorer.stacks.co/txid/${data.txId}?chain=testnet`,
+              "_blank"
+            )
+            .focus();
+        }, 1000);
       },
       onCancel: () => {
         notifyError();
