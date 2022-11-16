@@ -321,12 +321,12 @@ const ContractCallCorneta = () => {
         // No response da transacao com a blockchain pegar o txId e salvar no userBet da API Corneta
         // Depois de finalizado salva na api corneta
 
-        // window
-        //   .open(
-        //     `https://explorer.stacks.co/txid/${data.txId}?chain=testnet`,
-        //     "_blank"
-        //   )
-        //   .focus();
+        window
+          .open(
+            `https://explorer.stacks.co/txid/${data.txId}?chain=testnet`,
+            "_blank"
+          )
+          .focus();
       },
       onCancel: () => {
         notifyError();
