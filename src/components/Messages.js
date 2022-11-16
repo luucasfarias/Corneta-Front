@@ -131,7 +131,7 @@ const Messages = () => {
         </Row>
         <Row>
           <Col>
-            <h2>Comentarios</h2>
+            <h2>Cornetadas</h2>
           </Col>
         </Row>
 
@@ -139,11 +139,11 @@ const Messages = () => {
           <Col>
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Escrever comentario</Form.Label>
+                <Form.Label>Escreva sua cornetada</Form.Label>
                 <Form.Control as="textarea" rows={3} value={comment} onChange={handleCommentChange} />
               </Form.Group>
 
-              <Button className='message-btn' disabled={!comment} onClick={createComment}>Comentar</Button>
+              <Button className='message-btn' disabled={!comment} onClick={createComment}>Cornetar</Button>
             </Form>
           </Col>
         </Row>
@@ -152,7 +152,7 @@ const Messages = () => {
           <Col>
             <section>
               <hr className='line' />
-              <h5 className="list-comments-title box-comment">Lista de comentarios</h5>
+              <h5 className="list-comments-title box-comment">Lista de cornetadas</h5>
               <>
                 {commentList && commentList.map((item, i) => {
                   return (
@@ -167,7 +167,7 @@ const Messages = () => {
                   )
                 })}
 
-                {commentList.length <= 0 ? <div>Não ha comentarios no momento</div> : null}
+                {commentList.length <= 0 ? <div>Não ha cornetadas no momento</div> : null}
               </>
             </section>
           </Col>
