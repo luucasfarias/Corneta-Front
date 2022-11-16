@@ -23,8 +23,8 @@ import 'react-toastify/dist/ReactToastify.css';
 // ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.bet-test-nara
 
 const ContractCallCorneta = () => {
-  // http://44.201.160.92/corneta/matches
-  // const url = 'http://44.201.160.92';
+  // https://44.201.160.92/corneta/matches
+  // const url = 'https://44.201.160.92';
   const url = 'http://localhost:3000';
   const defaultRound = 'Grupos 1';
   const { doContractCall } = useConnect();
@@ -57,12 +57,12 @@ const ContractCallCorneta = () => {
 
   useEffect(() => {
     loadMatchBet(defaultRound);
-    userExists();
+    // userExists();
   }, []);
 
 
   function userExists() {
-    axios.post(`http://44.201.160.92/corneta/user/signin`,
+    axios.post(`http://localhost:8888/corneta/user/signin`,
       { blockChainCode: userSession.loadUserData().profile.stxAddress.testnet },
       { headers: headers }).then((response) => {
         setNewUser(false);
@@ -75,7 +75,7 @@ const ContractCallCorneta = () => {
 
   // TODO: Alterar para url de prod
   function loadMatchBet(round) {
-    const url = 'http://44.201.160.92/corneta/bet';
+    const url = 'http://localhost:8888/corneta/bet';
     axios.get(`${url}`, { headers: headers }).then((response) => {
       const group = response.data.filter((bet) => bet.match.round === round);
       setMatch(group);
@@ -429,17 +429,29 @@ const ContractCallCorneta = () => {
     setState({ ...initialState });
   }
 
+  // "name": "João",
+  // "document": "01333202392",
+  // "email": "joao@joao.com.br",
+  // "password": "joao123"
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
-    notifyNewUser();
-    setNewUser(false);
-    // axios.post(`${url}/corneta/user`, state, { headers: headers }).then((response) => {
+    const userState = {
+      name: nickName,
+      nickName: nickName,
+      email: email,
+      blockChainCode: userSession.loadUserData().profile.stxAddress.testnet
+    };
+
+    console.log(userState);
+
+    // notifyNewUser();
+    // setNewUser(false);
+    // axios.post(`${url}/corneta/user`, userState, { headers: headers }).then((response) => {
     //   console.log(response);
-    //   if (response.status === 201) {
-    //     clearFields();
-    //     // navigate("/home");
-    //   }
+    //   // if (response.status === 201) {
+    //   //   clearFields();
+    //   // }
     // })
   };
 
@@ -470,10 +482,10 @@ const ContractCallCorneta = () => {
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                     <Form.Label>E-mail</Form.Label>
                     <Form.Control type="email" name="email"
-                      onChange={handleInputEmail} required />
+                      onChange={handleInputEmail} />
                     {error && <span style={{ color: 'red' }}>{error}</span>}
                   </Form.Group>
-                  <Button className="btn-form" disabled={nickName.length <= 0 || (email.length <= 0 || error)} onClick={handleSubmit}>Cadastrar</Button>
+                  <Button className="btn-form" disabled={nickName.length <= 0} onClick={handleSubmit}>Cadastrar</Button>
                 </Form>
               </Card>
             </Container>
