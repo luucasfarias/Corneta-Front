@@ -58,7 +58,7 @@ const Messages = () => {
   };
 
   const notifyMessage = () => toast.success(
-    'Comentário enviado com sucesso', {
+    'Cornetada enviada com sucesso', {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
