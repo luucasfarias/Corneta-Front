@@ -43,13 +43,6 @@ const Messages = () => {
       },
       {
         "idBetTo": 1,
-        "idUserFrom": 5,
-        "userName": "Armando Penha",
-        "message": "Mensagem de teste",
-        "id": 8
-      },
-      {
-        "idBetTo": 1,
         "idUserFrom": 1,
         "userName": "Jose Silva",
         "message": "fsfds",
