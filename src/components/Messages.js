@@ -19,12 +19,44 @@ const Messages = () => {
   }, []);
 
   const getReceivedComments = () => {
-    axios.get(`http://localhost:3000/receivedMessage?idBetTo=12`).then((response) => {
-      console.log(response.data);
-      if (response.data.length > 0) {
-        setCommentList([...response.data]);
+    // axios.get(`http://localhost:3000/receivedMessage?idBetTo=12`).then((response) => {
+    //   console.log(response.data);
+    //   if (response.data.length > 0) {
+    //     setCommentList([...response.data]);
+    //   }
+    // });
+
+    const mock = [
+      {
+        "idBetTo": 1,
+        "idUserFrom": 1,
+        "userName": "Joaquina da Silve",
+        "message": "meu comentario",
+        "id": 1
+      },
+      {
+        "idBetTo": 1,
+        "idUserFrom": 1,
+        "userName": "Maria Costa",
+        "message": "Mensagem",
+        "id": 7
+      },
+      {
+        "idBetTo": 1,
+        "idUserFrom": 5,
+        "userName": "Armando Penha",
+        "message": "Mensagem de teste",
+        "id": 8
+      },
+      {
+        "idBetTo": 1,
+        "idUserFrom": 1,
+        "userName": "Jose Silva",
+        "message": "fsfds",
+        "id": 9
       }
-    });
+    ];
+    setCommentList(mock);
   }
 
   const handleCommentChange = event => {
@@ -33,7 +65,7 @@ const Messages = () => {
   };
 
   const notifyMessage = () => toast.success(
-    'Mensagem enviada com sucesso', {
+    'Comentário enviado com sucesso', {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -46,19 +78,27 @@ const Messages = () => {
 
   const createComment = () => {
     const messageData = {
-      idBetTo: 12,
+      idBetTo: 1,
       idUserFrom: 1,
+      userName: "Username mock teste",
       message: comment
     }
 
     console.log(messageData);
 
-    axios.post('http://localhost:3000/message', messageData).then((response) => {
-      console.log(response);
-      setComment('');
-      getReceivedComments();
-      notifyMessage();
-    });
+    setCommentList([...commentList, messageData]);
+
+    setComment('');
+    notifyMessage();
+
+    // setComment();
+
+    // axios.post('http://localhost:3000/message', messageData).then((response) => {
+    //   console.log(response);
+    //   setComment('');
+    //   getReceivedComments();
+    //   notifyMessage();
+    // });
   }
 
   
