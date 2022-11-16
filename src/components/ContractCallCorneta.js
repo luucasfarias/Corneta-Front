@@ -344,7 +344,7 @@ const ContractCallCorneta = () => {
       contractAddress: `${splitHashCode[0]}`,
       contractName: `${splitHashCode[1]}`,
       functionName: "finalize-bet",
-      functionArgs: [intCV(item.homeTeam.scoreboard), intCV(item.visitingTeam.scoreboard)], // valores que serao o placar final do jogo
+      functionArgs: [intCV(item.match.homeTeam.scoreboard), intCV(item.match.visitingTeam.scoreboard)], // valores que serao o placar final do jogo
       postConditionMode: PostConditionMode.Deny,
       postConditions: [makeContractSTXPostCondition(
         splitHashCode[0],
@@ -355,7 +355,9 @@ const ContractCallCorneta = () => {
       onFinish: (data) => {
         console.log("onFinish:", data);
         notifyFinalizeBet();
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       },
       onCancel: () => {
         notifyError();
@@ -440,7 +442,6 @@ const ContractCallCorneta = () => {
   }
 
   const test = (item) => {
-    console.log('meu birro: ', item);
     finalizaMatchBet(item);
   }
 
@@ -562,7 +563,7 @@ const ContractCallCorneta = () => {
                                     disabled={true}
                                     onClick={() => saveMatchBet(item.match)}>Salvar palpite</Button>
 
-                                  <Button type="button" id={`finish-bet-${item.match.id}`} variant="light" className="finish" onClick={() => test(item.match)}>Finalizar palpite</Button>
+                                  <Button type="button" id={`finish-bet-${item.match.id}`} variant="light" className="finish" onClick={() => test(item)}>Finalizar palpite</Button>
                                 </Card.Body>
                               </Card>
                             </Col>
