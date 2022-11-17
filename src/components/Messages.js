@@ -12,6 +12,9 @@ const Messages = () => {
   const url = 'http://localhost:3000';
   const [comment, setComment] = useState('');
   const [commentList, setCommentList] = useState([]);
+  const [infoContractBet, setInfoContractBet] = useState(null);
+  const [totalReceived, setTotalReceived] = useState(null);
+  const [totalSent, setTotalSent] = useState(null);
 
   useEffect(() => {
     console.log('fui chamando', state);
@@ -22,8 +25,16 @@ const Messages = () => {
   const getInfoBetContract = () => {
     const urlInfoContract = 'https://stacks-node-api.testnet.stacks.co/extended/v1/address/ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match95/stx'
     axios.get(`${urlInfoContract}`).then((response) => {
-      console.log(response);
+      // console.log(response.data);
+      // setInfoContractBet(response.data);
+      sanitizeValueContract(response.data);
     });
+  }
+
+  const sanitizeValueContract = (data) => {
+    console.log(data.total_received);
+    setTotalReceived(data.total_received/1000000);
+    setTotalSent(data.total_sent / 1000000);
   }
 
   const getReceivedComments = () => {
@@ -135,6 +146,9 @@ const Messages = () => {
             <Link to={-1}>
               <Button variant="link">Voltar</Button>
             </Link>
+          </Col>
+          <Col>
+            Valor total rateado: { totalSent } - Valor total de apostas: {totalReceived}
           </Col>
         </Row>
         <Row>
