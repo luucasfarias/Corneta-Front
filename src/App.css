@@ -38,3 +38,12 @@
 .App-link {
   color: #bc93f9;
 }
+
+.container-tutorial {
+  margin-bottom: 20px;
+}
+
+.tutorial-button {
+  background-color: #8a1538 !important;
+  border-color: #8a1538 !important;
+}

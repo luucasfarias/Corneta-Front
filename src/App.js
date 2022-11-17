@@ -32,13 +32,21 @@ function App() {
     }
   }
 
-  // {/* ContractCallVote file: `./src/components/ContractCallVote.js` */}
-  //         {/* <ContractCallVote /> */}
+  const redirectTutorial = () => {
+    console.log('aqui');
+    window.open('https://master.d2y7xlrwdpbpjt.amplifyapp.com/tutorial/tutorial.html');
+  }
+
   return (
     <>
       {
         !userSession.isUserSignedIn() ?
           <div className="App">
+            <div className='container-tutorial'>
+              <h2>Se este for seu primeiro acesso, comece por aqui</h2>
+              <Button className='tutorial-button' onClick={() => redirectTutorial()}>Acessar tutorial</Button>
+            </div>
+
             <header className="App-header">
               <img src="https://i.pinimg.com/564x/c4/63/98/c4639855e84f992b7dbed318972b86fd.jpg" className="App-logo" alt="logo" />
 
