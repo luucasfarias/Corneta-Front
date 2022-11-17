@@ -12,10 +12,10 @@ import ContractCallCorneta from "./ContractCallCorneta";
 import { Navigate, useNavigate } from 'react-router-dom';
 // ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.bet-test-nara
 
-// http://44.201.160.92/corneta/user/signin
+// http://3.82.200.237/corneta/user/signin
 const User = () => {
   // const navigate = useNavigate();
-  // const url = 'http://44.201.160.92';
+  // const url = 'http://3.82.200.237';
   // // const blockChainCode = userSession.loadUserData().profile.stxAddress.testnet;
   // const [newUser, setNewUser] = useState(null);
   // const [state, setState] = useState({

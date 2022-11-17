@@ -23,9 +23,9 @@ import 'react-toastify/dist/ReactToastify.css';
 // ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.bet-test-nara
 
 const ContractCallCorneta = () => {
-  // https://44.201.160.92/corneta/matches
-  // const url = 'https://44.201.160.92';
-  const url = 'http://localhost:3000';
+  // https://3.82.200.237/corneta/matches
+  // const url = 'https://3.82.200.237';
+  const url = 'http://3.82.200.237:8080';
   const defaultRound = 'Grupos 1';
   const { doContractCall } = useConnect();
   const [match, setMatch] = useState(null);
@@ -62,7 +62,7 @@ const ContractCallCorneta = () => {
 
 
   function userExists() {
-    axios.post(`http://localhost:8888/corneta/user/signin`,
+    axios.post(`http://3.82.200.237:8080/corneta/user/signin`,
       { blockChainCode: userSession.loadUserData().profile.stxAddress.testnet },
       { headers: headers }).then((response) => {
         setNewUser(false);
@@ -75,7 +75,7 @@ const ContractCallCorneta = () => {
 
   // TODO: Alterar para url de prod
   function loadMatchBet(round) {
-    const url = 'http://localhost:8888/corneta/bet';
+    const url = 'http://3.82.200.237:8080/corneta/bet';
     axios.get(`${url}`, { headers: headers }).then((response) => {
       const group = response.data.filter((bet) => bet.match.round === round);
       setMatch(group);
@@ -215,7 +215,7 @@ const ContractCallCorneta = () => {
     console.log('bet: ', bet);
 
     // /corneta/bet/{idBet}/user/{idUser}
-    // localhost:8888/corneta/bet/{idBet}/user/{idUser}
+    // 3.82.200.237:8080/corneta/bet/{idBet}/user/{idUser}
     // O id do match eh id da bet
     axios.post(`${url}/doBetForUser`, bet).then((response) => {
       console.log('aposta salva: ', response);

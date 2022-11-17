@@ -6,7 +6,7 @@ import ConnectWallet from './ConnectWallet';
 import "../Message.css"
 import { toast, ToastContainer } from 'react-toastify';
 
-// URL publicada http://44.201.160.92/
+// URL publicada http://3.82.200.237/
 const Messages = () => {
   const { state } = useLocation();
   const url = 'http://localhost:3000';
@@ -94,7 +94,7 @@ const Messages = () => {
     // });
   }
 
-  
+
 
   return (
     <>

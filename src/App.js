@@ -9,7 +9,7 @@ import ContractCallCorneta from "./components/ContractCallCorneta";
 
 
 function App() {
-  const url = 'http://44.201.160.92';
+  const url = 'http://3.82.200.237:8080';
   const [newUser, setNewUser] = useState(null);
 
   useEffect(() => {
@@ -83,10 +83,6 @@ function App() {
             </Container>
           </Container>
       }
-
-
-
-
     </>
   );
 }
