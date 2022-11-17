@@ -9,7 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 // URL publicada http://3.82.200.237/
 const Messages = () => {
   const { state } = useLocation();
-  const url = 'http://localhost:3000';
+  const url = 'http://3.82.200.237:3000';
   const [comment, setComment] = useState('');
   const [commentList, setCommentList] = useState([]);
   const [infoContractBet, setInfoContractBet] = useState(null);
@@ -38,7 +38,7 @@ const Messages = () => {
   }
 
   const getReceivedComments = () => {
-    // axios.get(`http://localhost:3000/receivedMessage?idBetTo=12`).then((response) => {
+    // axios.get(`http://3.82.200.237:3000/receivedMessage?idBetTo=12`).then((response) => {
     //   console.log(response.data);
     //   if (response.data.length > 0) {
     //     setCommentList([...response.data]);
@@ -105,7 +105,7 @@ const Messages = () => {
 
     // setComment();
 
-    // axios.post('http://localhost:3000/message', messageData).then((response) => {
+    // axios.post('http://3.82.200.237:3000/message', messageData).then((response) => {
     //   console.log(response);
     //   setComment('');
     //   getReceivedComments();
