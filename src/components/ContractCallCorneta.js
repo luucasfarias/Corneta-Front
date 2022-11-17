@@ -62,7 +62,7 @@ const ContractCallCorneta = () => {
 
 
   function userExists() {
-    axios.post(`http://3.82.200.237:8080/corneta/user/signin`,
+    axios.post(`http://172.31.88.62:8080/corneta/user/signin`,
       { blockChainCode: userSession.loadUserData().profile.stxAddress.testnet },
       { headers: headers }).then((response) => {
         setNewUser(false);
@@ -75,7 +75,7 @@ const ContractCallCorneta = () => {
 
   // TODO: Alterar para url de prod
   function loadMatchBet(round) {
-    const url = 'http://3.82.200.237:8080/corneta/bet';
+    const url = 'http://172.31.88.62:8080/corneta/bet';
     axios.get(`${url}`, { headers: headers }).then((response) => {
       const group = response.data.filter((bet) => bet.match.round === round);
       setMatch(group);

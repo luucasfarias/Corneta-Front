@@ -16,7 +16,15 @@ const Messages = () => {
   useEffect(() => {
     console.log('fui chamando', state);
     getReceivedComments();
+    getInfoBetContract();
   }, []);
+
+  const getInfoBetContract = () => {
+    const urlInfoContract = 'https://stacks-node-api.testnet.stacks.co/extended/v1/address/ST1X0C07T1WN52DQXGAASMQ7P5M357HJGV4PFF6JC.corneta-match95/stx'
+    axios.get(`${urlInfoContract}`).then((response) => {
+      console.log(response);
+    });
+  }
 
   const getReceivedComments = () => {
     // axios.get(`http://localhost:3000/receivedMessage?idBetTo=12`).then((response) => {
